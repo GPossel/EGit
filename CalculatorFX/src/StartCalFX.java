@@ -40,12 +40,23 @@ public class StartCalFX extends Application{
 		gridPane.add(btn_reset, 3, 4);
 		
 		btn_calculate.setOnAction(e->{
-			
+			try {
+				int number1 = Integer.parseInt(txt_input1.getText());
+				int number2 = Integer.parseInt(txt_input2.getText());
+				
+				double solution = number1 / number2;
+				
+				lMessage.setText("The solution is:" + solution + ".");
+				
+				
+			} catch (ArithmeticException ae)
+			{	lMessage.setText("Must not divide by zero..");	}
 		});
 		
 		btn_reset.setOnAction(e->{
 			txt_input1.setText("");
 			txt_input2.setText("");
+			lMessage.setText("");
 		});
 		
 		Scene scene = new Scene(gridPane);
