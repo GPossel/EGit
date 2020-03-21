@@ -37,10 +37,10 @@ public class StartCalFX extends Application{
 		Button btn_calculate = new Button("Calculate");
 		gridPane.add(btn_calculate, 3, 3);
 		Button btn_reset = new Button("Reset");
-		gridPane.add(btn_calculate, 3, 4);
+		gridPane.add(btn_reset, 3, 4);
 		
 		btn_calculate.setOnAction(e->{
-
+			
 		});
 		
 		btn_reset.setOnAction(e->{
