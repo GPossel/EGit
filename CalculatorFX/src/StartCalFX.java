@@ -29,17 +29,17 @@ public class StartCalFX extends Application{
 		gridPane.setHgap(8);
 
 		gridPane.add(txt_input1, 0, 0);
-		gridPane.add(new Label("/"), 0, 1);
-		gridPane.add(txt_input2, 0, 2);
+		gridPane.add(new Label("/"), 1, 0);
+		gridPane.add(txt_input2, 2, 0);
 		
-		gridPane.add(lMessage, 1, 3);
+		gridPane.add(lMessage, 0, 1);
 		
 		Button btn_calculate = new Button("Calculate");
 		gridPane.add(btn_calculate, 3, 3);
 		Button btn_reset = new Button("Reset");
 		gridPane.add(btn_reset, 3, 4);
 		
-		btn_calculate.setOnAction(e->{
+		btn_calculate.setOnAction(action->{
 			try {
 				int number1 = Integer.parseInt(txt_input1.getText());
 				int number2 = Integer.parseInt(txt_input2.getText());
@@ -47,10 +47,15 @@ public class StartCalFX extends Application{
 				double solution = number1 / number2;
 				
 				lMessage.setText("The solution is:" + solution + ".");
-				
-				
-			} catch (ArithmeticException ae)
-			{	lMessage.setText("Must not divide by zero..");	}
+				} 
+			catch (ArithmeticException | NumberFormatException e)
+			{	if(e instanceof ArithmeticException)
+				{ lMessage.setText("Must not divide by zero.."); } 
+				else if (e instanceof NumberFormatException)
+				{ lMessage.setText("Parsing went wrong"); }
+			}
+			catch(Exception e)
+			{ lMessage.setText("Oops something else went wrong" + e + "is problem.. ");}
 		});
 		
 		btn_reset.setOnAction(e->{
