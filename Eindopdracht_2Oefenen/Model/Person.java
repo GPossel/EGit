@@ -4,36 +4,27 @@ public class Person implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	String UserName;
-	String password;
-	String firstName;
-	String lastName;
 	String email;
+	String password;
+	String firstname;
+	String lastname;
 	Integer age;
-	Roles role;
-
-	public Person(String firstName)
-	{
-		this.firstName = firstName;
-	}
 	
-	
-	public Person(String userName, String password, String firstName, String lastName, String email, Integer age) {
+	public Person(String email, String password, String firstname, String lastname, Integer age) {
 		super();
-		this.UserName = userName;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
 		this.email = email;
+		this.password = password;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.age = age;
 	}
 
-	public String getUserName() {
-		return UserName;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserName(String userName) {
-		UserName = userName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -44,44 +35,28 @@ public class Person implements Serializable {
 		this.password = password;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
 	public Integer getAge() {
 		return age;
 	}
-
 
 	public void setAge(Integer age) {
 		this.age = age;
 	}
 
-	public Roles getRole() {
-		return role;
-	}
-
-	public void setRole(Roles role) {
-		this.role = role;
-	}
 }

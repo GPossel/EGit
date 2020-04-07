@@ -21,30 +21,26 @@ import javafx.stage.Stage;
 
 public class HomeScreenFX_Teacher extends Application{
 		
-	public Teacher teacher;
+	public Teacher teacher;	
+	public ObservableList<Student> listOfStudents = FXCollections.observableArrayList();
+	public ObservableList<Class_Student> myCourses;
 	
-	public ReadingStudent reading = new ReadingStudent();
-	public ObservableList<Student> listOfStudentsFromTXT = reading.ReadListOfStudents();
-	public ObservableList<Student> ListOfStudentsFromClass = FXCollections.observableArrayList();
-
-	
-	public ObservableList<Student> ListOfStudentsFromVAR = FXCollections.observableArrayList(
-			new Student("Jane", "Welkom", "Jane", "Margolus", "", 23),
-			new Student("Combo", "Welkom", "Combo", "D.", "", 27));
-
-	
-	
-	public HomeScreenFX_Teacher(Teacher teacher) 
+	public HomeScreenFX_Teacher(Teacher teacher, ObservableList<Person> listOfPersons, ObservableList<Class_Student> Courses) 
 	{
-		this.teacher = teacher;		
+		this.teacher = teacher;	
+		this.myCourses = Courses;
+		
+		FilterListToStudents(listOfPersons);
+		ConnectCourseToStudents(listOfStudents, Courses);
 	}
+
 
 	public TableView<Student> myTable = new TableView<>();
 
 	
 	public void start(Stage window) throws Exception
 	{
-		window.setTitle("List of Grades");
+		window.setTitle("List of courses");
 		window.setWidth(1000);
 		
 		GridPane gridPane = new GridPane();
@@ -55,28 +51,31 @@ public class HomeScreenFX_Teacher extends Application{
 		MenuBar menuBar = new MenuBar();	
 		MenuMaker(menuBar, window);
 		gridPane.add(menuBar, 0, 0);
+		
+		Label lbl_name = new Label(teacher.firstname + " " + teacher.lastname + " (" + teacher.age + "), " + teacher.getTeaching_Vak().getVakNaam());
+		lbl_name.setStyle("-fx-font: 20 arial;");
+		gridPane.add(lbl_name, 0, 1);	
+		gridPane.add(new Label("E-mail: " + teacher.email), 0, 2);
+		Label title = new Label("Course overview:");
+		title.setStyle("-fx-font: 16 arial;");
+		gridPane.add(title, 0, 3);
 				
-		gridPane.add(new Label("Voornaam: " + teacher.firstName),  0, 1);
-		gridPane.add(new Label("Achternaam: " + teacher.lastName), 0, 2);
-		gridPane.add(new Label("Username: " + teacher.UserName), 0, 3);
-		gridPane.add(new Label("E-mail: " + teacher.email), 0, 4);
 			
-		WritingStudent stu = new WritingStudent();
-		ChoiceBox<Class_Student> choiceBox = new ChoiceBox<Class_Student>(stu.myCourses);
+		ChoiceBox<Class_Student> choiceBox = new ChoiceBox<>(myCourses);	
+		choiceBox.setOnAction(e -> RefillMyTable(choiceBox.getValue()));	
+		gridPane.add(choiceBox, 0, 6);
 		
-		choiceBox.setOnAction(e -> RefillMyTable(choiceBox.getValue()));
-		
-        TableColumn<Student, String> firstNameCol = new TableColumn<Student, String>("First name");
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<Student, String>("firstName"));
-        myTable.getColumns().add(firstNameCol);		
-        
-        TableColumn<Student, String> lastNameCol = new TableColumn<Student, String>("Last name");
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<Student, String>("lastName"));
-        myTable.getColumns().add(lastNameCol);		
-        
         TableColumn<Student, String> stu_emailCol = new TableColumn<Student, String>("E-mail");
         stu_emailCol.setCellValueFactory(new PropertyValueFactory<Student, String>("email"));
-        myTable.getColumns().add(stu_emailCol);		
+        myTable.getColumns().add(stu_emailCol);	
+        
+        TableColumn<Student, String> firstNameCol = new TableColumn<Student, String>("Firstname");
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<Student, String>("firstname"));
+        myTable.getColumns().add(firstNameCol);
+        
+        TableColumn<Student, String> lastNameCol = new TableColumn<Student, String>("Lastname");
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<Student, String>("lastname"));
+        myTable.getColumns().add(lastNameCol);
 		
 		ColumnConstraints column = new ColumnConstraints();
 		column.setPercentWidth(100);
@@ -84,13 +83,7 @@ public class HomeScreenFX_Teacher extends Application{
 		
         VBox root = new VBox(myTable);
         gridPane.add(root, 0 ,7);	
-			
-		Label title = new Label("Your courses: ");
-		title.setStyle("-fx-font: 14 arial;");
-		gridPane.add(title, 0, 5);
-		
-		gridPane.add(choiceBox, 0, 6);
-		
+				
 		Scene scene = new Scene(gridPane);
 		window.setScene(scene);
 		window.show();
@@ -98,8 +91,8 @@ public class HomeScreenFX_Teacher extends Application{
 	
 	public void RefillMyTable(Class_Student newValue)
 	{
-		ListOfStudentsFromClass = newValue.getCourseFollowers();
-		myTable.setItems(ListOfStudentsFromClass);
+		listOfStudents = newValue.getCourseFollowers();
+		myTable.setItems(listOfStudents);
 	}
 
 
@@ -145,4 +138,33 @@ public class HomeScreenFX_Teacher extends Application{
 		menuBar.getMenus().addAll(logoutMenu, aboutMenu, resultsMenu);
 	}
 	
+	
+	private void ConnectCourseToStudents(ObservableList<Student> listOfStudents,
+
+			ObservableList<Class_Student> courses) {
+		
+		for (Student stu : listOfStudents)
+		{
+			for(Class_Student cour : courses)
+			{
+				if(stu.myCourse.getCourse_Name().equals(cour.getCourse_Name()))
+				{
+					cour.addStudentToCourse(stu);
+				}	
+			}
+		}		
+	}
+
+	private void FilterListToStudents(ObservableList<Person> listOfPersons) {
+		// Filter the students that are in the listofPersons.
+		for (Person p : listOfPersons)
+		{
+			if(p instanceof Student)
+			{
+				listOfStudents.add((Student) p);	
+			}		
+		}
+				
+	}
+
 }

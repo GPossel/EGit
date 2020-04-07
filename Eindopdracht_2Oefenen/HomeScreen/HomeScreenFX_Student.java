@@ -44,14 +44,13 @@ public class HomeScreenFX_Student extends Application{
 		MenuBar menuBar = new MenuBar();	
 		MenuMaker(menuBar, window);
 		gridPane.add(menuBar, 0, 0);
-				
-		gridPane.add(new Label("Voornaam: " + student.firstName),  0, 1);
-		gridPane.add(new Label("Achternaam: " + student.lastName), 0, 2);
-		gridPane.add(new Label("Username: " + student.UserName), 0, 3);
-		gridPane.add(new Label("E-mail: " + student.email), 0, 4);
-		
+
+		Label lbl_name = new Label(student.firstname + " " + student.lastname + " (" + student.age + ")");
+		lbl_name.setStyle("-fx-font: 20 arial;");
+		gridPane.add(lbl_name, 0, 1);	
+		gridPane.add(new Label("E-mail: " + student.email), 0, 2);
 		Label title = new Label("Your grades: ");
-		title.setStyle("-fx-font: 24 arial;");
+		title.setStyle("-fx-font: 16 arial;");
 		gridPane.add(title, 0, 5);
 		
 		ObservableList<Vak> vakkenlijst = student.getVakkenLijst();

@@ -18,44 +18,29 @@ import javafx.util.converter.DoubleStringConverter;
 
 public class StudentResultWindowFX extends Application{
 	
-	public ObservableList<Vak> vakken = FXCollections.observableArrayList(
-            new Vak("Biology"), new Vak("Math"), new Vak("Informatica"), new Vak("English"));
-	
 	public Student student;
 	
 	StudentResultWindowFX(Student student)
 	{
 		this.student = student;
-		if(student.vakkenLijst == null)
-		{
-			GiveSomeResults();
-		}
 	}
-	
-	public void GiveSomeResults()
-	{	
-		this.student.setVakkenLijst(vakken);
-	}
-	
 	
 	public TableView<Vak> myTable;
 	
 	public void start(Stage window) throws Exception
 	{	
-		window.setTitle("Student: " + student.firstName + " " + student.lastName + " resutls.");		
 		window.setWidth(1000);
 		
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(10,10,10,10));
 		gridPane.setVgap(10);
 		gridPane.setHgap(8);
-		Label title = new Label(student.firstName + " " + student.lastName + " grades: ");
+		Label title = new Label(student.email + " " + " grades: ");
 		title.setStyle("-fx-font: 24 arial;");
 		
 		gridPane.add(title, 0, 3);	
 		
-		ObservableList<Vak> vakken = student.vakkenLijst;
-		myTable = new TableView<>(vakken);
+		myTable = new TableView<>(student.vakkenLijst);
 		
         TableColumn<Vak, String> vakNaamCol = new TableColumn<Vak, String>("Vakken");
         vakNaamCol.setCellValueFactory(new PropertyValueFactory<Vak, String>("vakNaam"));
@@ -85,7 +70,7 @@ public class StudentResultWindowFX extends Application{
         p2Col.setOnEditCommit(new EventHandler<CellEditEvent<Vak, Double>>() {
             @Override
             public void handle(CellEditEvent<Vak, Double> t) {
-            	
+            	            	
             	for(Vak v : student.vakkenLijst)
             	{
             		if(v.equals(((Vak) t.getTableView().getItems().get(t.getTablePosition().getRow()))))
@@ -115,6 +100,7 @@ public class StudentResultWindowFX extends Application{
         }
     );  
         myTable.getColumns().add(p3Col);
+                
         
         TableColumn<Vak, Double> p4Col = new TableColumn<Vak, Double>("P4");
         p4Col.setCellValueFactory(new PropertyValueFactory<Vak, Double>("p4"));

@@ -34,6 +34,10 @@ public class Class_Student {
 		return courseFollowers;
 	}
 	
+	public void setCourse_CourseFollowers(ObservableList<Student> listStudents) {
+		courseFollowers = listStudents;
+	}
+	
 	public void deleteStudentFromCourse(Student student)
 	{
 		courseFollowers.remove(student);

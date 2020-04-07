@@ -26,25 +26,18 @@ import javafx.util.converter.IntegerStringConverter;
 public class HomeScreenFX_Admin extends Application{
 		
 	public Administrator admin;
-	
-	public ObservableList<Person> ListOfPersons = FXCollections.observableArrayList(
-			new Person("Jesse", "Welkom", "Jesse", "Pinkman", "pinkman@gmail.com", 25),
-			new Person("Skyler", "Welkom", "Skylar", "White", "skylar@annoying.com", 49),
-			new Person("Saul", "Welkom", "Saul", "Goodman", "BetterEmailSaul@gmail.com", 51),
-			new Person("Walter Jr.", "Welkom", "Walter jr.", "White", "Flynn@gmail.com", 16),
-			new Person("Walter", "Welkom", "Walter", "White", "heisenberg@gmail.com", 50)
-			);
-	
-	public HomeScreenFX_Admin(Administrator admin) 
+	public ObservableList<Person> allAccounts = FXCollections.observableArrayList();
+
+	public HomeScreenFX_Admin(Administrator admin, ObservableList<Person> allAccounts) 
 	{
 		this.admin = admin;		
+		this.allAccounts = allAccounts;
 	}
 
 	public void start(Stage window) throws Exception
 	{
-		window.setTitle("List of Grades");
+		window.setTitle("List of Accounts");
 		window.setWidth(1000);
-		window.initModality(Modality.WINDOW_MODAL);
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(10,10,10,10));
 		gridPane.setVgap(10);
@@ -54,24 +47,20 @@ public class HomeScreenFX_Admin extends Application{
 		MenuMaker(menuBar, window);
 		gridPane.add(menuBar, 0, 0);
 				
-		gridPane.add(new Label("Voornaam: " + admin.firstName),  0, 1);
-		gridPane.add(new Label("Achternaam: " + admin.lastName), 0, 2);
-		gridPane.add(new Label("Username: " + admin.UserName), 0, 3);
-		gridPane.add(new Label("E-mail: " + admin.email), 0, 4);
+		gridPane.add(new Label("E-mail: " + admin.email), 0, 1);
 		
-		TableView<Person> myTable = new TableView<>(ListOfPersons);	
+		TableView<Person> myTable = new TableView<>(allAccounts);	
 		
-		
-		Button removeButton = new Button("Remove User");
+		Button removeButton = new Button("Remove account");
 		removeButton.setOnAction(g-> { 
 			if(myTable.getSelectionModel().getSelectedItem() == null)
 			{
-				JOptionPane.showMessageDialog(new JFrame(), "Please select a student first.");		
+				JOptionPane.showMessageDialog(new JFrame(), "Please select a account first.");		
 			}
 			else 
 			{				
 				Person p = (Person)myTable.getSelectionModel().getSelectedItem();
-				ListOfPersons.remove(p);
+				allAccounts.remove(p);
 			}
 			
 		});
@@ -79,10 +68,10 @@ public class HomeScreenFX_Admin extends Application{
 		gridPane.add(removeButton, 0, 5);
 		
 		
-		Button addButton = new Button("Add new User");
+		Button addButton = new Button("Add new account");
 		addButton.setOnAction(e -> {
 		
-			AdjustUserFX_Window addUserScreen = new AdjustUserFX_Window(ListOfPersons);
+			AdjustUserFX_Window addUserScreen = new AdjustUserFX_Window(allAccounts);
 		try {
 			addUserScreen.start(new Stage());
 			} catch (Exception e1) {
@@ -95,25 +84,25 @@ public class HomeScreenFX_Admin extends Application{
 		gridPane.add(addButton, 0 , 6);
 		
 		Label title = new Label("Your users: ");
-		title.setStyle("-fx-font: 24 arial;");
+		title.setStyle("-fx-font: 16 arial;");
 		gridPane.add(title, 0, 7);
 
 					
-        TableColumn<Person, String> userNameCol = new TableColumn<Person, String>("Username");
-        userNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("userName"));
-        userNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        userNameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Person, String>>()
+        TableColumn<Person, String> emailCol = new TableColumn<Person, String>("Email");
+        emailCol.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
+        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        emailCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Person, String>>()
         		{ 
         	@Override 
         	public void handle(CellEditEvent<Person, String> event)
         	{
         		Person p = myTable.getSelectionModel().getSelectedItem();
-        		p.setUserName(event.getNewValue().toString());
+        		p.setEmail(event.getNewValue().toString());
         	}
         		});
         
         
-        myTable.getColumns().add(userNameCol);	
+        myTable.getColumns().add(emailCol);	
         
         
         TableColumn<Person, String> passwordCol = new TableColumn<Person, String>("Password");
@@ -121,18 +110,18 @@ public class HomeScreenFX_Admin extends Application{
         passwordCol.setCellFactory(TextFieldTableCell.forTableColumn());
         passwordCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Person, String>>()
 		{ 
-		@Override 
-		public void handle(CellEditEvent<Person, String> event)
-		{
-			Person p = myTable.getSelectionModel().getSelectedItem();
-			p.setPassword(event.getNewValue().toString());
-		}
-			});
+			@Override 
+			public void handle(CellEditEvent<Person, String> event)
+			{
+				Person p = myTable.getSelectionModel().getSelectedItem();
+				p.setPassword(event.getNewValue().toString());
+			}
+		});
         
         myTable.getColumns().add(passwordCol);	
-        
+		
         TableColumn<Person, String> firstNameCol = new TableColumn<Person, String>("Firstname");
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("firstname"));
         firstNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
         firstNameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Person, String>>()
 		{ 
@@ -140,14 +129,14 @@ public class HomeScreenFX_Admin extends Application{
 			public void handle(CellEditEvent<Person, String> event)
 			{
 				Person p = myTable.getSelectionModel().getSelectedItem();
-				p.setFirstName(event.getNewValue().toString());
+				p.setLastname(event.getNewValue().toString());
 			}
 		});
         
         myTable.getColumns().add(firstNameCol);	
         
         TableColumn<Person, String> lastNameCol = new TableColumn<Person, String>("Lastname");
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lastname"));
         lastNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
         lastNameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Person, String>>()
 		{ 
@@ -155,25 +144,12 @@ public class HomeScreenFX_Admin extends Application{
 			public void handle(CellEditEvent<Person, String> event)
 			{
 				Person p = myTable.getSelectionModel().getSelectedItem();
-				p.setLastName(event.getNewValue().toString());
+				p.setLastname(event.getNewValue().toString());
 			}
 		});
         myTable.getColumns().add(lastNameCol);	
-    
-        TableColumn<Person, String> emailCol = new TableColumn<Person, String>("Email");
-        emailCol.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
-        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        emailCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Person, String>>()
-		{ 
-			@Override 
-			public void handle(CellEditEvent<Person, String> event)
-			{
-				Person p = myTable.getSelectionModel().getSelectedItem();
-				p.setEmail(event.getNewValue().toString());
-			}
-		});
-        myTable.getColumns().add(emailCol);	
-
+        
+        
         TableColumn<Person, Integer> ageCol = new TableColumn<Person, Integer>("Age");
         ageCol.setCellValueFactory(new PropertyValueFactory<Person, Integer>("age"));
         ageCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -187,7 +163,8 @@ public class HomeScreenFX_Admin extends Application{
 			}
 		});
         myTable.getColumns().add(ageCol);	
-		myTable.setEditable(true);
+        
+        myTable.setEditable(true);
 		
 		ColumnConstraints column1 = new ColumnConstraints();
 		column1.setPercentWidth(100);
