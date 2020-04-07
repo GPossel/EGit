@@ -20,8 +20,8 @@ public class InlogScreenFX extends Application{
 	public ObservableList<Vak> vakkenALFA = FXCollections.observableArrayList(
             new Vak("History"), new Vak("English"), new Vak("French"), new Vak("Spanish"));
 	
-	public Class_Student myCourse1 = new Class_Student("FA1A");	
-	public Class_Student myCourse2 = new Class_Student("FA2A");	
+	public Course myCourse1 = new Course("FA1A");	
+	public Course myCourse2 = new Course("FA2A");	
 	// @ email  // @password
 	public ObservableList<Person> allAccounts = FXCollections.observableArrayList(
 			new Student("jesse@student.inholland.nl", "Welkom", "Jesse", "Pinkman", 25, myCourse1, vakkenBETA),
@@ -32,7 +32,7 @@ public class InlogScreenFX extends Application{
 			new Teacher("saul@teacher.inholland.nl", "Welkom", "Saul", "Goodman", 59, new Vak("Math")),
 			new Administrator("guss@administrator.inholland.nl", "Welkom", "Guss", "Fring", 49));
 	
-	public ObservableList<Class_Student> myCourses = FXCollections.observableArrayList(myCourse1, myCourse2);
+	public ObservableList<Course> myCourses = FXCollections.observableArrayList(myCourse1, myCourse2);
 	
 	public static void main(String[] args) 
 	{

@@ -157,7 +157,7 @@ public class AdjustUserFX_Window extends Application{
 					else if (cbox_Item.matches(".+student.inholland.nl"))
 					{
 						email += "@student.inholland.nl";
-						Class_Student newCourse = new Class_Student(txt_course.getText());
+						Course newCourse = new Course(txt_course.getText());
 						Student student = new Student(email, password, firstname, lastname, age, newCourse, null);
 						listOfPersons.add(student);
 					}

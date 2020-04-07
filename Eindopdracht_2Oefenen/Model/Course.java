@@ -2,21 +2,21 @@ import javax.swing.JOptionPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Class_Student {
+public class Course {
 
 	public ObservableList<Student> courseFollowers = FXCollections.observableArrayList();
 	public String course_Name = new String();
 	
-	public Class_Student()
+	public Course()
 	{	}
 	
-	public Class_Student(String course_Name)
+	public Course(String course_Name)
 	{
 		courseFollowers = FXCollections.observableArrayList();
 		this.course_Name = course_Name;
 	}
 	
-	public Class_Student(ObservableList<Student> studentList, String course_Name)
+	public Course(ObservableList<Student> studentList, String course_Name)
 	{
 		this.courseFollowers = studentList;
 		this.course_Name = course_Name;

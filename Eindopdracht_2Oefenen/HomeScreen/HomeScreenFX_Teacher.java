@@ -23,9 +23,9 @@ public class HomeScreenFX_Teacher extends Application{
 		
 	public Teacher teacher;	
 	public ObservableList<Student> listOfStudents = FXCollections.observableArrayList();
-	public ObservableList<Class_Student> myCourses;
+	public ObservableList<Course> myCourses;
 	
-	public HomeScreenFX_Teacher(Teacher teacher, ObservableList<Person> listOfPersons, ObservableList<Class_Student> Courses) 
+	public HomeScreenFX_Teacher(Teacher teacher, ObservableList<Person> listOfPersons, ObservableList<Course> Courses) 
 	{
 		this.teacher = teacher;	
 		this.myCourses = Courses;
@@ -61,7 +61,7 @@ public class HomeScreenFX_Teacher extends Application{
 		gridPane.add(title, 0, 3);
 				
 			
-		ChoiceBox<Class_Student> choiceBox = new ChoiceBox<>(myCourses);	
+		ChoiceBox<Course> choiceBox = new ChoiceBox<>(myCourses);	
 		choiceBox.setOnAction(e -> RefillMyTable(choiceBox.getValue()));	
 		gridPane.add(choiceBox, 0, 6);
 		
@@ -89,7 +89,7 @@ public class HomeScreenFX_Teacher extends Application{
 		window.show();
 	}
 	
-	public void RefillMyTable(Class_Student newValue)
+	public void RefillMyTable(Course newValue)
 	{
 		listOfStudents = newValue.getCourseFollowers();
 		myTable.setItems(listOfStudents);
@@ -141,11 +141,11 @@ public class HomeScreenFX_Teacher extends Application{
 	
 	private void ConnectCourseToStudents(ObservableList<Student> listOfStudents,
 
-			ObservableList<Class_Student> courses) {
+			ObservableList<Course> courses) {
 		
 		for (Student stu : listOfStudents)
 		{
-			for(Class_Student cour : courses)
+			for(Course cour : courses)
 			{
 				if(stu.myCourse.getCourse_Name().equals(cour.getCourse_Name()))
 				{

@@ -3,24 +3,24 @@ import javafx.collections.ObservableList;
 
 public class Student extends Person implements Serializable {
 	
-	public Class_Student myCourse;
+	public Course myCourse;
 	public ObservableList<Vak> vakkenLijst;
 
 
 	public Student(String email, String password, String firstname, String lastname, Integer age,
-			Class_Student myCourse, ObservableList<Vak> vakkenLijst) {
+			Course myCourse, ObservableList<Vak> vakkenLijst) {
 		super(email, password, firstname, lastname, age);
 		this.myCourse = myCourse;
 		this.vakkenLijst = vakkenLijst;
 	}
 
 
-	public Class_Student getMyCourse() {
+	public Course getMyCourse() {
 		return myCourse;
 	}
 
 
-	public void setMyCourse(Class_Student myCourse) {
+	public void setMyCourse(Course myCourse) {
 		this.myCourse = myCourse;
 	}
 
