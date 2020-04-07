@@ -1,4 +1,4 @@
-public class Vak 
+public class Expertise 
 {
 	private String vakNaam = new String(); 
 	public Double p1;
@@ -8,14 +8,14 @@ public class Vak
 	
 	
 	
-	public Vak(String vakNaam) {
+	public Expertise(String vakNaam) {
 		super();
 		this.vakNaam = vakNaam;
 	}
 
 	
 
-	public Vak(String vakNaam, Double p1, Double p2, Double p3, Double p4) {
+	public Expertise(String vakNaam, Double p1, Double p2, Double p3, Double p4) {
 		super();
 		this.vakNaam = vakNaam;
 	}

@@ -15,10 +15,10 @@ public class InlogScreenFX extends Application{
 	public TextField txt_password = new TextField();
 	public Label lMessage = new Label();
 	
-	public ObservableList<Vak> vakkenBETA = FXCollections.observableArrayList(
-            new Vak("Biology"), new Vak("Math"), new Vak("Informatica"), new Vak("English"));
-	public ObservableList<Vak> vakkenALFA = FXCollections.observableArrayList(
-            new Vak("History"), new Vak("English"), new Vak("French"), new Vak("Spanish"));
+	public ObservableList<Expertise> vakkenBETA = FXCollections.observableArrayList(
+            new Expertise("Biology"), new Expertise("Math"), new Expertise("Informatica"), new Expertise("English"));
+	public ObservableList<Expertise> vakkenALFA = FXCollections.observableArrayList(
+            new Expertise("History"), new Expertise("English"), new Expertise("French"), new Expertise("Spanish"));
 	
 	public Course myCourse1 = new Course("FA1A");	
 	public Course myCourse2 = new Course("FA2A");	
@@ -28,8 +28,8 @@ public class InlogScreenFX extends Application{
 			new Student("jane@student.inholland.nl", "Welkom", "Jane", "Margolus", 25, myCourse2, vakkenBETA),
 			new Student("flynn@student.inholland.nl", "Welkom", "Walter Jr.", "White", 25, myCourse2, vakkenALFA),
 			new Student("combo@student.inholland.nl", "Welkom", "Combo", "D.", 23, myCourse2, vakkenBETA),
-			new Teacher("walter@teacher.inholland.nl", "Welkom", "Walter", "White", 53, new Vak("Chemisty")),
-			new Teacher("saul@teacher.inholland.nl", "Welkom", "Saul", "Goodman", 59, new Vak("Math")),
+			new Teacher("walter@teacher.inholland.nl", "Welkom", "Walter", "White", 53, new Expertise("Chemisty")),
+			new Teacher("saul@teacher.inholland.nl", "Welkom", "Saul", "Goodman", 59, new Expertise("Math")),
 			new Administrator("guss@administrator.inholland.nl", "Welkom", "Guss", "Fring", 49));
 	
 	public ObservableList<Course> myCourses = FXCollections.observableArrayList(myCourse1, myCourse2);

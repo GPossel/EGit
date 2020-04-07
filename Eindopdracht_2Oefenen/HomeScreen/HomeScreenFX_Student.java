@@ -53,28 +53,28 @@ public class HomeScreenFX_Student extends Application{
 		title.setStyle("-fx-font: 16 arial;");
 		gridPane.add(title, 0, 5);
 		
-		ObservableList<Vak> vakkenlijst = student.getVakkenLijst();
+		ObservableList<Expertise> vakkenlijst = student.getVakkenLijst();
 		
-		TableView<Vak> myTable = new TableView<>(vakkenlijst);	
+		TableView<Expertise> myTable = new TableView<>(vakkenlijst);	
 		
-        TableColumn<Vak, String> vakNaamCol = new TableColumn<Vak, String>("Vakken");
-        vakNaamCol.setCellValueFactory(new PropertyValueFactory<Vak, String>("vakNaam"));
+        TableColumn<Expertise, String> vakNaamCol = new TableColumn<Expertise, String>("Vakken");
+        vakNaamCol.setCellValueFactory(new PropertyValueFactory<Expertise, String>("vakNaam"));
         myTable.getColumns().add(vakNaamCol);
         
-        TableColumn<Vak, Double> p1Col = new TableColumn<Vak, Double>("P1");
-        p1Col.setCellValueFactory(new PropertyValueFactory<Vak, Double>("p1"));
+        TableColumn<Expertise, Double> p1Col = new TableColumn<Expertise, Double>("P1");
+        p1Col.setCellValueFactory(new PropertyValueFactory<Expertise, Double>("p1"));
         myTable.getColumns().add(p1Col);
         
-        TableColumn<Vak, Double> p2Col = new TableColumn<Vak, Double>("P2");
-        p2Col.setCellValueFactory(new PropertyValueFactory<Vak, Double>("p2"));
+        TableColumn<Expertise, Double> p2Col = new TableColumn<Expertise, Double>("P2");
+        p2Col.setCellValueFactory(new PropertyValueFactory<Expertise, Double>("p2"));
         myTable.getColumns().add(p2Col);
         
-        TableColumn<Vak, Double> p3Col = new TableColumn<Vak, Double>("P3");
-        p3Col.setCellValueFactory(new PropertyValueFactory<Vak, Double>("p3"));
+        TableColumn<Expertise, Double> p3Col = new TableColumn<Expertise, Double>("P3");
+        p3Col.setCellValueFactory(new PropertyValueFactory<Expertise, Double>("p3"));
         myTable.getColumns().add(p3Col);
         
-        TableColumn<Vak, Double> p4Col = new TableColumn<Vak, Double>("P4");
-        p4Col.setCellValueFactory(new PropertyValueFactory<Vak, Double>("p4"));
+        TableColumn<Expertise, Double> p4Col = new TableColumn<Expertise, Double>("P4");
+        p4Col.setCellValueFactory(new PropertyValueFactory<Expertise, Double>("p4"));
         myTable.getColumns().add(p4Col);				
         
 		ColumnConstraints column1 = new ColumnConstraints();

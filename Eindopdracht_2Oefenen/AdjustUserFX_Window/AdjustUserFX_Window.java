@@ -150,7 +150,7 @@ public class AdjustUserFX_Window extends Application{
 					if(cbox_Item.matches(".+teacher.inholland.nl"))
 					{
 						email += "@teacher.inholland.nl";
-						Vak newProfession = new Vak(txt_expertise.toString());
+						Expertise newProfession = new Expertise(txt_expertise.toString());
 						Teacher teacher = new Teacher(email, password, firstname, lastname, age, newProfession);
 						listOfPersons.add(teacher);
 					}

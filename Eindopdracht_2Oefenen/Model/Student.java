@@ -4,11 +4,11 @@ import javafx.collections.ObservableList;
 public class Student extends Person implements Serializable {
 	
 	public Course myCourse;
-	public ObservableList<Vak> vakkenLijst;
+	public ObservableList<Expertise> vakkenLijst;
 
 
 	public Student(String email, String password, String firstname, String lastname, Integer age,
-			Course myCourse, ObservableList<Vak> vakkenLijst) {
+			Course myCourse, ObservableList<Expertise> vakkenLijst) {
 		super(email, password, firstname, lastname, age);
 		this.myCourse = myCourse;
 		this.vakkenLijst = vakkenLijst;
@@ -25,12 +25,12 @@ public class Student extends Person implements Serializable {
 	}
 
 
-	public ObservableList<Vak> getVakkenLijst() {
+	public ObservableList<Expertise> getVakkenLijst() {
 		return vakkenLijst;
 	}
 
 
-	public void setVakkenLijst(ObservableList<Vak> vakkenLijst) {
+	public void setVakkenLijst(ObservableList<Expertise> vakkenLijst) {
 		this.vakkenLijst = vakkenLijst;
 	}
 

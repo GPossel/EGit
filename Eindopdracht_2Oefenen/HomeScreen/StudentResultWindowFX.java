@@ -25,7 +25,7 @@ public class StudentResultWindowFX extends Application{
 		this.student = student;
 	}
 	
-	public TableView<Vak> myTable;
+	public TableView<Expertise> myTable;
 	
 	public void start(Stage window) throws Exception
 	{	
@@ -42,20 +42,20 @@ public class StudentResultWindowFX extends Application{
 		
 		myTable = new TableView<>(student.vakkenLijst);
 		
-        TableColumn<Vak, String> vakNaamCol = new TableColumn<Vak, String>("Vakken");
-        vakNaamCol.setCellValueFactory(new PropertyValueFactory<Vak, String>("vakNaam"));
+        TableColumn<Expertise, String> vakNaamCol = new TableColumn<Expertise, String>("Vakken");
+        vakNaamCol.setCellValueFactory(new PropertyValueFactory<Expertise, String>("vakNaam"));
         myTable.getColumns().add(vakNaamCol);
         
-        TableColumn<Vak, Double> p1Col = new TableColumn<Vak, Double>("P1");
-        p1Col.setCellValueFactory(new PropertyValueFactory<Vak, Double>("p1"));
+        TableColumn<Expertise, Double> p1Col = new TableColumn<Expertise, Double>("P1");
+        p1Col.setCellValueFactory(new PropertyValueFactory<Expertise, Double>("p1"));
         p1Col.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        p1Col.setOnEditCommit(new EventHandler<CellEditEvent<Vak, Double>>() {
+        p1Col.setOnEditCommit(new EventHandler<CellEditEvent<Expertise, Double>>() {
             @Override
-            public void handle(CellEditEvent<Vak, Double> t) {
+            public void handle(CellEditEvent<Expertise, Double> t) {
             	
-            	for(Vak v : student.vakkenLijst)
+            	for(Expertise v : student.vakkenLijst)
             	{
-            		if(v.equals(((Vak) t.getTableView().getItems().get(t.getTablePosition().getRow()))))
+            		if(v.equals(((Expertise) t.getTableView().getItems().get(t.getTablePosition().getRow()))))
             		{
             			v.setP1((Double)t.getNewValue());
             		}
@@ -64,16 +64,16 @@ public class StudentResultWindowFX extends Application{
         });
         myTable.getColumns().add(p1Col);
         
-        TableColumn<Vak, Double> p2Col = new TableColumn<Vak, Double>("P2");
-        p2Col.setCellValueFactory(new PropertyValueFactory<Vak, Double>("p2"));
+        TableColumn<Expertise, Double> p2Col = new TableColumn<Expertise, Double>("P2");
+        p2Col.setCellValueFactory(new PropertyValueFactory<Expertise, Double>("p2"));
         p2Col.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        p2Col.setOnEditCommit(new EventHandler<CellEditEvent<Vak, Double>>() {
+        p2Col.setOnEditCommit(new EventHandler<CellEditEvent<Expertise, Double>>() {
             @Override
-            public void handle(CellEditEvent<Vak, Double> t) {
+            public void handle(CellEditEvent<Expertise, Double> t) {
             	            	
-            	for(Vak v : student.vakkenLijst)
+            	for(Expertise v : student.vakkenLijst)
             	{
-            		if(v.equals(((Vak) t.getTableView().getItems().get(t.getTablePosition().getRow()))))
+            		if(v.equals(((Expertise) t.getTableView().getItems().get(t.getTablePosition().getRow()))))
             		{
             			v.setP2((Double)t.getNewValue());
             		}
@@ -82,16 +82,16 @@ public class StudentResultWindowFX extends Application{
         });
         myTable.getColumns().add(p2Col);
         
-        TableColumn<Vak, Double> p3Col = new TableColumn<Vak, Double>("P3");
-        p3Col.setCellValueFactory(new PropertyValueFactory<Vak, Double>("p3"));
+        TableColumn<Expertise, Double> p3Col = new TableColumn<Expertise, Double>("P3");
+        p3Col.setCellValueFactory(new PropertyValueFactory<Expertise, Double>("p3"));
         p3Col.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        p3Col.setOnEditCommit(new EventHandler<CellEditEvent<Vak, Double>>() {
+        p3Col.setOnEditCommit(new EventHandler<CellEditEvent<Expertise, Double>>() {
             @Override
-            public void handle(CellEditEvent<Vak, Double> t) {
+            public void handle(CellEditEvent<Expertise, Double> t) {
             	
-            	for(Vak v : student.vakkenLijst)
+            	for(Expertise v : student.vakkenLijst)
             	{
-            		if(v.equals(((Vak) t.getTableView().getItems().get(t.getTablePosition().getRow()))))
+            		if(v.equals(((Expertise) t.getTableView().getItems().get(t.getTablePosition().getRow()))))
             		{
             			v.setP3((Double)t.getNewValue());
             		}
@@ -102,16 +102,16 @@ public class StudentResultWindowFX extends Application{
         myTable.getColumns().add(p3Col);
                 
         
-        TableColumn<Vak, Double> p4Col = new TableColumn<Vak, Double>("P4");
-        p4Col.setCellValueFactory(new PropertyValueFactory<Vak, Double>("p4"));
+        TableColumn<Expertise, Double> p4Col = new TableColumn<Expertise, Double>("P4");
+        p4Col.setCellValueFactory(new PropertyValueFactory<Expertise, Double>("p4"));
         p4Col.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        p4Col.setOnEditCommit(new EventHandler<CellEditEvent<Vak, Double>>() {
+        p4Col.setOnEditCommit(new EventHandler<CellEditEvent<Expertise, Double>>() {
             @Override
-            public void handle(CellEditEvent<Vak, Double> t) {
+            public void handle(CellEditEvent<Expertise, Double> t) {
             	
-            	for(Vak v : student.vakkenLijst)
+            	for(Expertise v : student.vakkenLijst)
             	{
-            		if(v.equals(((Vak) t.getTableView().getItems().get(t.getTablePosition().getRow()))))
+            		if(v.equals(((Expertise) t.getTableView().getItems().get(t.getTablePosition().getRow()))))
             		{
             			v.setP4((Double)t.getNewValue());
             		}
